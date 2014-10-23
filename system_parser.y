@@ -5,7 +5,7 @@
 extern FILE * yyin;
 
 /*Set number of iterations*/
-int pos=0;
+int isaxiom=1;
 
 %}
 
@@ -33,23 +33,30 @@ int pos=0;
 
 
 l_system    :
-            file RENDER SEMICOL {render();};
-            |l_system file
-
+            file axiom RENDER SEMICOL {render();};            
+            |axiom file RENDER SEMICOL {render();};
+            |axiom RENDER SEMICOL {render();};
 file:
             file equation
             |file list_definitions            
             |equation
             |list_definitions
+            
+axiom       :
+            AXIOM EQUAL word SEMICOL    {isaxiom=0;axiom();}
 
 equation    :                               
             VAR_NAME EQUAL expression SEMICOL   {equation($1);}   
 
 expression  :
-            expression VAR_NAME                 
+            expression word                 
             |expression operator    
-            |VAR_NAME                              
-            |operator               
+            |operator
+            |word
+
+word        :
+            word VAR_NAME           {(isaxiom==1) ? add_to_word($2):add_operator($1);}
+            |VAR_NAME               {(isaxiom==1) ? add_to_word($1):add_operator($1);}
 
 operator    :
             LEFT                    {add_operator($1);}

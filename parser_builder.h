@@ -19,14 +19,15 @@ int iterations=1;
 float angle=90;
 
 char array_equa[300];
+char word[300];
 char pos_equa=0;
-int wherelefbra=0;
-int leftbras=0;
+int pos_word=0;
+
 
 void add_operator(char oper){    
     array_equa[pos_equa]=oper;
     pos_equa++;
-    wherelefbra++;
+    array_equa[pos_equa]='\0';
 }
 
  
@@ -40,29 +41,35 @@ void set_iter(int number){
     printf("iter %d\n",iterations);    
 }
 
-void add_oper_at(char oper, int pos){    
-    printf("Len=%d\n",pos);
-    pos_equa++;    
-    leftbras++;
-}
-
 void equation(char var){
-    printf("---%c----\n",var);
-    int i;
+    printf("---%c----\n",var);    
     printf(array_equa);
     printf("\n");
     printf("-------\n");
+    
+    
+    
+    int i;
     pos_equa=0;
     for(i=0;i<300;i++){
         array_equa[i]='\0';
     }
-    
+}
+
+void add_to_word(char letter){
+    word[pos_word]=letter;
+    pos_word++;    
+    word[pos_word]='\0';
 }
 
 void render(){
     printf("Rendering\n");
 }
 
+void axiom(){
+    printf("Axiom\n");
+    printf(word);
+}
 
 #ifdef	__cplusplus
 }
