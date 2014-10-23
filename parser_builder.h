@@ -20,25 +20,30 @@ float angle=90;
 
 char array_equa[300];
 char pos_equa=0;
+int wherelefbra=0;
+int leftbras=0;
 
 void add_operator(char oper){    
     array_equa[pos_equa]=oper;
     pos_equa++;
+    wherelefbra++;
 }
 
  
 void set_angle(float number){
     angle=number;
-    printf("%lf\n",angle);
+    printf("angle %lf\n",angle);
 }
 
 void set_iter(int number){
     iterations=number;
-    printf("%d\n",iterations);
+    printf("iter %d\n",iterations);    
 }
 
-void add_oper_at(char oper, int pos){
-    
+void add_oper_at(char oper, int pos){    
+    printf("Len=%d\n",pos);
+    pos_equa++;    
+    leftbras++;
 }
 
 void equation(char var){
@@ -53,6 +58,11 @@ void equation(char var){
     }
     
 }
+
+void render(){
+    printf("Rendering\n");
+}
+
 
 #ifdef	__cplusplus
 }

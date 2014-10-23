@@ -18,6 +18,8 @@ right_bra       "]"
 angle           "angle"
 iter            "iter"
 axiom           "axiom"
+define          "#define"
+render          "render()"
 
 
 %%
@@ -36,6 +38,9 @@ axiom           "axiom"
 {assign}            {return EQUAL;}
 {angle}             {return ANGLE;}
 {iter}              {return ITER;}
+{define}            {return DEFINE;}
+{axiom}             {return AXIOM;}
+{render}            {return RENDER;}
 .                   {} 		
 %%
 

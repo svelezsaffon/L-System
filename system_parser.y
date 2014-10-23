@@ -5,9 +5,10 @@
 extern FILE * yyin;
 
 /*Set number of iterations*/
-
+int pos=0;
 
 %}
+
 
 %token	RIGHT
 %token	LEFT
@@ -25,24 +26,30 @@ extern FILE * yyin;
 %token  LBRA
 %token  ITER
 %token  RENDER
+%token  DEFINE
+%token  AXIOM
+
 %%
 
-lis_equations:
-            lis_equations equation
-            |lis_equations angle
-            |lis_equations iter
+
+l_system    :
+            file RENDER SEMICOL {render();};
+            |l_system file
+
+file:
+            file equation
+            |file list_definitions            
             |equation
-            |angle
-            |iter
+            |list_definitions
 
 equation    :                               
             VAR_NAME EQUAL expression SEMICOL   {equation($1);}   
 
 expression  :
-            expression VAR_NAME            
-            |expression operator
-            |VAR_NAME
-            |operator                        
+            expression VAR_NAME                 
+            |expression operator    
+            |VAR_NAME                              
+            |operator               
 
 operator    :
             LEFT                    {add_operator($1);}
@@ -52,13 +59,17 @@ operator    :
             |ROT_Y_POS              {add_operator($1);}
             |ROT_Y_NEG              {add_operator($1);}
             |ROT_X                  {add_operator($1);}            
-            |LBRA expression RBRA   {$$=$2;add_operator($3);}
-            
-angle       :
-            ANGLE EQUAL NUMBER SEMICOL  {set_angle($3);}
+            |LBRA                   {add_operator($1);}
+            |RBRA                   {add_operator($1);}
 
-iter        :
-            ITER EQUAL NUMBER SEMICOL  {set_iter($3);}
+
+list_definitions    :
+                    list_definitions define
+                    |define
+
+define  :
+        DEFINE ANGLE EQUAL NUMBER SEMICOL  {set_angle($4);}
+        |DEFINE ITER EQUAL NUMBER SEMICOL  {set_iter($4);}
 
 %%
 

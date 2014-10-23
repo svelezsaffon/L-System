@@ -54,7 +54,9 @@
      RBRA = 270,
      LBRA = 271,
      ITER = 272,
-     RENDER = 273
+     RENDER = 273,
+     DEFINE = 274,
+     AXIOM = 275
    };
 #endif
 /* Tokens.  */
@@ -74,6 +76,8 @@
 #define LBRA 271
 #define ITER 272
 #define RENDER 273
+#define DEFINE 274
+#define AXIOM 275
 
 
 
