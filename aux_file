@@ -1,0 +1,17 @@
+%token	NUMBER
+%token	LEFT
+%token	RIGHT
+%token	EQUAL
+%token	VAR_NAME 
+%token	PLUS
+%token	DIFF
+%token	MINUS
+%token	ROT_Z_POS
+%token	ROT_Z_NEG
+%token	ROT_Y_POS
+%token	ROT_Y_NEG
+%token	ROT_X
+%token	ANGLE
+%token	AXIOM
+%token	ASSIGN
+%token	ITER
