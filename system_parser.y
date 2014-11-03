@@ -9,7 +9,6 @@ int isaxiom=1;
 
 %}
 
-
 %token	RIGHT
 %token	LEFT
 %token	EQUAL
@@ -28,25 +27,23 @@ int isaxiom=1;
 %token  RENDER
 %token  DEFINE
 %token  AXIOM
+%token  NAME
 
 %%
 
-
 l_system    :
-            file axiom RENDER SEMICOL {render();};            
-            |axiom file RENDER SEMICOL {render();};
-            |axiom RENDER SEMICOL {render();};
-file:
-            file equation
-            |file list_definitions            
-            |equation
-            |list_definitions
-            
+            list_definitions axiom equations RENDER SEMICOL {render();}                                    
+            |axiom equations RENDER SEMICOL {render();}
+
 axiom       :
             AXIOM EQUAL word SEMICOL    {isaxiom=0;axiom();}
 
+equations   :
+            equations equation
+            |equation
+
 equation    :                               
-            VAR_NAME EQUAL expression SEMICOL   {equation($1);}   
+            VAR_NAME EQUAL expression SEMICOL   {int res; res=equation($1); if(!res){yyerror("Undefined constant in rule");};}   
 
 expression  :
             expression word                 
@@ -69,7 +66,6 @@ operator    :
             |LBRA                   {add_operator($1);}
             |RBRA                   {add_operator($1);}
 
-
 list_definitions    :
                     list_definitions define
                     |define
@@ -77,7 +73,7 @@ list_definitions    :
 define  :
         DEFINE ANGLE EQUAL NUMBER SEMICOL  {set_angle($4);}
         |DEFINE ITER EQUAL NUMBER SEMICOL  {set_iter($4);}
-
+        |DEFINE NAME EQUAL word SEMICOL    {tree_name();}
 %%
 
 main(argc, argv)

@@ -56,7 +56,8 @@
      ITER = 272,
      RENDER = 273,
      DEFINE = 274,
-     AXIOM = 275
+     AXIOM = 275,
+     NAME = 276
    };
 #endif
 /* Tokens.  */
@@ -78,6 +79,7 @@
 #define RENDER 273
 #define DEFINE 274
 #define AXIOM 275
+#define NAME 276
 
 
 

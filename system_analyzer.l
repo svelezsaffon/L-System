@@ -20,6 +20,7 @@ iter            "iter"
 axiom           "axiom"
 define          "#define"
 render          "render()"
+name            "name"
 
 
 %%
@@ -41,13 +42,14 @@ render          "render()"
 {define}            {return DEFINE;}
 {axiom}             {return AXIOM;}
 {render}            {return RENDER;}
+{name}              {return NAME;}
 .                   {} 		
 %%
 
 int yyerror(char *s)
 {
-	fprintf(stderr,"%s\n",s);        
-	return;
+	fprintf(stderr,"%s\n",s);                
+	return 1;
 }
 int yywrap(){
 	return 1;
