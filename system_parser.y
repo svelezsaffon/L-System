@@ -28,6 +28,7 @@ int isaxiom=1;
 %token  DEFINE
 %token  AXIOM
 %token  NAME
+%token VARIABLES
 
 %%
 
@@ -52,7 +53,7 @@ expression  :
             |word
 
 word        :
-            word VAR_NAME           {(isaxiom==1) ? add_to_word($2):add_operator($1);}
+            word VAR_NAME           {(isaxiom==1) ? add_to_word($2):add_operator($2);}
             |VAR_NAME               {(isaxiom==1) ? add_to_word($1):add_operator($1);}
 
 operator    :
@@ -74,13 +75,25 @@ define  :
         DEFINE ANGLE EQUAL NUMBER SEMICOL  {set_angle($4);}
         |DEFINE ITER EQUAL NUMBER SEMICOL  {set_iter($4);}
         |DEFINE NAME EQUAL word SEMICOL    {tree_name();}
+        |DEFINE VARIABLES EQUAL word SEMICOL {variables();};
 %%
 
 main(argc, argv)
 int argc;
 char **argv;
 {
+
+	FILE *f = fopen("tree.svs", "r");
+  
+	if(!f) {
+		printf("I can't open your file :( \n"	);
+		return (1);
+	}
+	yyin=f;
+
 	yyparse();
 
+        fclose(f);
+        
 	return 0;
 }

@@ -1,0 +1,7 @@
+#define angle=65;
+#define iter=2;
+#define name=awesome;
+#define variables=F;
+axiom=F;
+F=F+F-F-F+F;
+render();

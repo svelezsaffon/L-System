@@ -5,7 +5,7 @@
 digit		[0-9]
 char            [a-zA-Z]
 left            [+]
-right           [-]
+right           "-"
 pitch_up        "^"
 pitch_down      [&]
 roll_left       [$]
@@ -21,6 +21,7 @@ axiom           "axiom"
 define          "#define"
 render          "render()"
 name            "name"
+variables       "variables"
 
 
 %%
@@ -43,6 +44,7 @@ name            "name"
 {axiom}             {return AXIOM;}
 {render}            {return RENDER;}
 {name}              {return NAME;}
+{variables}         {return VARIABLES;}
 .                   {} 		
 %%
 

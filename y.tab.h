@@ -57,7 +57,8 @@
      RENDER = 273,
      DEFINE = 274,
      AXIOM = 275,
-     NAME = 276
+     NAME = 276,
+     VARIABLES = 277
    };
 #endif
 /* Tokens.  */
@@ -80,6 +81,7 @@
 #define DEFINE 274
 #define AXIOM 275
 #define NAME 276
+#define VARIABLES 277
 
 
 
