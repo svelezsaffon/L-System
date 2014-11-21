@@ -1,0 +1,8 @@
+#define angle=90;
+#define iter=7;
+#define name=firsttree;
+#define variables=fx;
+axiom=fx;
+f=x|f;
+x=x:f;
+render();

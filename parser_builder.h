@@ -26,15 +26,15 @@ char pos_equa=0;
 int pos_word=0;
 
 char *rules[20];
-char final_equa[2000];
-char aux_final[2000];
+char final_equa[7000];
+char aux_final[7000];
 char *tree_word;
 char *defvar;
+char *defconst;
 char *axiom_word;
 int name_is_set=0;
-unsigned int num_equations=0;
-
 char *result_equa;
+unsigned int num_equations=0;
 
 void add_operator(char oper){
     sprintf(array_equa, "%s%c", array_equa,oper);
@@ -56,9 +56,48 @@ unsigned int axiom_contains(char var){
             i++;
         }
     }
+    i=0;
+    size=strlen(defconst);
+    while(!contains && i<size){
+        if(defconst[i]==var){
+            contains=1;
+        }else{
+            i++;
+        }
+    }
+    return contains;
+}
+
+unsigned int in_move(char var){
+    unsigned int contains=0;
+    unsigned int i=0;
+    unsigned int size=strlen(defconst);
+    while(!contains && i<size){
+        if(defconst[i]==var){
+            contains=1;
+        }else{
+            i++;
+        }
+    }
+    return contains;
+}
+
+unsigned int in_var(char var){
+        unsigned int contains=0;
+    unsigned int i=0;
+    unsigned int size=strlen(defvar);
+    while(!contains && i<size){
+        if(defvar[i]==var){
+            contains=1;
+        }else{
+            i++;
+        }
+    }
     
     return contains;
 }
+
+
 
 unsigned int give_rule(char var){
     int i=0;
@@ -70,8 +109,6 @@ unsigned int give_rule(char var){
             i++;
         }
     }
-
-    
     return i;
 }
 
@@ -102,19 +139,14 @@ unsigned int equation(char var){
     if(cont){
         rules[num_equations]=(char *)calloc(len+1,sizeof(char));
         rules[num_equations][0]=var;        
-        sprintf(rules[num_equations]+1, "%s", array_equa);
-        
+        sprintf(rules[num_equations]+1, "%s", array_equa);        
         good=1;
         num_equations++;
-        
-        for(i=0;i<num_equations;i++){
-            printf("%s\n",rules[i]);
-        }
     }else{        
         free_memory();
     }
     
-    
+
     pos_equa=0;
     for(i=0;i<300;i++){
         array_equa[i]='\0';
@@ -148,12 +180,19 @@ void variables(){
     memset (word,'\0',strlen(word));
 }
 
+void constants(){    
+    defconst=(char *)calloc(strlen(word),sizeof(char));    
+    sprintf(defconst, "%s", word);    
+    memset (word,'\0',strlen(word));    
+}
+
 
 void render(){
-        
+    int h;
+    
+
+    
     if(iterations){
-        printf("Rendering\n");
-        
         aux_final[0]='\0';
         final_equa[0]='\0';
         
@@ -168,26 +207,21 @@ void render(){
         unsigned int i;
         unsigned int len=strlen(axiom_word);
         
-        fprintf(f,"%s|", tree_word);
-        fprintf(f,"%s|", defvar);
-        fprintf(f,"%s|", axiom_word);
-        fprintf(f,"%d|", iterations);
-        fprintf(f,"%lf|", angle);
-        
-        for(i=0;i<1;i++){
-            fprintf(f,"%s|", rules[i]);
-        }
         
         for(i=0;i<len;i++){
-            if((axiom_word[i] >= 'a' && axiom_word[i]<='z') || (axiom_word[i]>='A' && axiom_word[i]<='Z') ){                
-                sprintf(aux_final, "%s%s", aux_final,rules[give_rule(axiom_word[i])]+1);                                
+            if(in_var(axiom_word[i])==1){
+                if((axiom_word[i] >= 'a' && axiom_word[i]<='z') || (axiom_word[i]>='A' && axiom_word[i]<='Z') ){                
+                    sprintf(aux_final, "%s%s", aux_final,rules[give_rule(axiom_word[i])]+1);                                
+                }else{
+                    sprintf(aux_final, "%s%c", aux_final,axiom_word[i]);
+                }
             }else{
                 sprintf(aux_final, "%s%c", aux_final,axiom_word[i]);
             }
             
         }
         
-        iterations--;        
+        iterations--;
         
         if(!iterations){
             sprintf(final_equa, "%s", aux_final);
@@ -199,11 +233,16 @@ void render(){
             final_equa[0]=='\0';
             
             for(i=0;i<len;i++){
-                if((aux_final[i] >= 'a' && aux_final[i]<='z') || (aux_final[i]>='A' && aux_final[i]<='Z') ){                
-                    sprintf(final_equa, "%s%s", final_equa,rules[give_rule(aux_final[i])]+1);                                
+                if(in_var(aux_final[i])){
+                    if((aux_final[i] >= 'a' && aux_final[i]<='z') || (aux_final[i]>='A' && aux_final[i]<='Z') ){                
+                        sprintf(final_equa, "%s%s", final_equa,rules[give_rule(aux_final[i])]+1);                                
+                    }else{
+                        sprintf(final_equa, "%s%c", final_equa,aux_final[i]);
+                    }
                 }else{
                     sprintf(final_equa, "%s%c", final_equa,aux_final[i]);
                 }
+                    
             }
             strcpy(aux_final,final_equa);
             aux_final[strlen(final_equa)+1]='\0';
@@ -213,13 +252,23 @@ void render(){
             }
         }
         
+        int longg=strlen(final_equa);
         
-        fprintf(f, final_equa);
+        if(longg>0){
+            for(i=0;i<longg;i++){
+                if((final_equa[i] >= 'a' && final_equa[i]<='z') || (final_equa[i]>='A' && final_equa[i]<='Z') && in_move(final_equa[i])==0){
+                    final_equa[i]='0';
+                }
+            }
         
+        }
+        
+        
+        
+        fprintf(f, final_equa);        
         fclose(f);
         free_memory();        
     }
-    
    
 }
 

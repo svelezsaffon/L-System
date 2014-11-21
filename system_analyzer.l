@@ -22,6 +22,8 @@ define          "#define"
 render          "render()"
 name            "name"
 variables       "variables"
+move            "move"
+direction       "direction"
 
 
 %%
@@ -45,6 +47,7 @@ variables       "variables"
 {render}            {return RENDER;}
 {name}              {return NAME;}
 {variables}         {return VARIABLES;}
+{move}              {return MOVE;}
 .                   {} 		
 %%
 

@@ -58,7 +58,8 @@
      DEFINE = 274,
      AXIOM = 275,
      NAME = 276,
-     VARIABLES = 277
+     VARIABLES = 277,
+     MOVE = 278
    };
 #endif
 /* Tokens.  */
@@ -82,6 +83,7 @@
 #define AXIOM 275
 #define NAME 276
 #define VARIABLES 277
+#define MOVE 278
 
 
 

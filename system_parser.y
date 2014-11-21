@@ -29,6 +29,7 @@ int isaxiom=1;
 %token  AXIOM
 %token  NAME
 %token VARIABLES
+%token MOVE
 
 %%
 
@@ -76,14 +77,17 @@ define  :
         |DEFINE ITER EQUAL NUMBER SEMICOL  {set_iter($4);}
         |DEFINE NAME EQUAL word SEMICOL    {tree_name();}
         |DEFINE VARIABLES EQUAL word SEMICOL {variables();};
+        |DEFINE MOVE EQUAL word SEMICOL {constants();};
 %%
 
 main(argc, argv)
 int argc;
 char **argv;
 {
-
-	FILE *f = fopen("tree.svs", "r");
+        
+        
+        
+	FILE *f = fopen(argv[1], "r");
   
 	if(!f) {
 		printf("I can't open your file :( \n"	);
