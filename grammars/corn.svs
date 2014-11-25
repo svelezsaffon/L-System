@@ -1,0 +1,10 @@
+﻿#define angle=90;
+#define iter=1;
+#define name=firsttree;
+#define variables=ABC;
+#define move=AB;
+axiom=A;
+A=A$A[+B+B]A&[-B-B]A$[:B:B]A&[|B|B]A$[+B+B]A&[-B-B]A$[+B+B]A&[-B-B]A$[:B:B]A&[|B|B]A$[+B+B]A&[-B-B];
+B=B;
+C=C;
+render();

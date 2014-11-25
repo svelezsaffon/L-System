@@ -27,6 +27,7 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>aux_file</itemPath>
+    <itemPath>treelib</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -43,6 +44,8 @@
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="parser_builder.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="treelib" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -70,6 +73,8 @@
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="parser_builder.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="treelib" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

@@ -1,7 +1,11 @@
 
 #include <iostream>
 #include "TreeLoaderFunctions.h"
-#include "TrePainter.h"
+//#include "TrePainter.h"
+#include "awesome.h"
+#include "smalltree.h"
+
+
 
 
 #ifdef _WIN32
@@ -11,6 +15,7 @@
 
 #include "GL/glui.h"
 
+#include "GL/freeglut.h"
 
 static float FOV = 60.0;
 static float nearZ = 0.1;
@@ -30,27 +35,20 @@ void initializeGL();
 void callbacksGL();
 void create_ui();
 
-Tree tree;
+MySuperTree tree;
+SmallTree coch;
 
 int main(int argc, char** argv){
 
 	glutInit(&argc, argv);
-	OperationsLoader loader("firsttree");
-	char *inst=loader.load_file();
-	//char inst[7] = { 'f', '&', 'f', '$', 'f','&','f'};
-	//char inst[3] = { 'f', '+', 'f'};
-
-
-	tree.set_structur(inst);
+	
+	
 	tree.create();
+	coch.create();
 
 	initializeGL();
 	callbacksGL();
-	
-
 	glutMainLoop();
-
-
 
 	system("pause");
 	return EXIT_SUCCESS;
@@ -70,13 +68,26 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_PROJECTION); 
 	glLoadIdentity();
-	gluPerspective(60, winWidth / winHeight, 0.01, 1000);
+	gluPerspective(60, winWidth / winHeight, 0.01, 500);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
 	gluLookAt(camera[0], camera[1], camera[2], 0, 0, 0, 0, 1, 0);
+	glBegin(GL_LINES);
+	glLineWidth(5.0f);
 
-	tree.draw();
+	vector<branch> tre_stru = tree.get_branches();
+	vector<branch>::iterator i = tre_stru.begin();
+	
+	for (; i != tre_stru.end(); i++){
+
+		glColor3ub(255, 0, 0);
+		glVertex3d((*i).begin[0], (*i).begin[1], (*i).begin[2]);
+		glVertex3d((*i).end[0], (*i).end[1], (*i).end[2]);
+
+	}
+	glEnd();
+	
 
 	glutSwapBuffers();
 
@@ -85,8 +96,7 @@ void display()
 
 void
 keyboardCB(unsigned char key, int x, int y)
-{
-	cout << key << endl;
+{	
 	switch (key){
 	case 'd':
 		angle += 2;

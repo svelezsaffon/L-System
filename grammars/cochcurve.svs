@@ -1,0 +1,8 @@
+﻿#define angle=90;
+#define iter=4;
+#define name=firsttree;
+#define variables=F;
+#define move=F;
+axiom=F;
+F=F+F-F-F+F;
+render();

@@ -30,6 +30,7 @@ int isaxiom=1;
 %token  NAME
 %token VARIABLES
 %token MOVE
+%token CLASSNAME
 
 %%
 
@@ -78,6 +79,7 @@ define  :
         |DEFINE NAME EQUAL word SEMICOL    {tree_name();}
         |DEFINE VARIABLES EQUAL word SEMICOL {variables();};
         |DEFINE MOVE EQUAL word SEMICOL {constants();};
+        |DEFINE CLASSNAME EQUAL word SEMICOL {class_name();};
 %%
 
 main(argc, argv)

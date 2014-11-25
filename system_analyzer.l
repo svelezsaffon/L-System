@@ -24,6 +24,7 @@ name            "name"
 variables       "variables"
 move            "move"
 direction       "direction"
+classname       "class"
 
 
 %%
@@ -48,6 +49,7 @@ direction       "direction"
 {name}              {return NAME;}
 {variables}         {return VARIABLES;}
 {move}              {return MOVE;}
+{classname}         {return CLASSNAME;}
 .                   {} 		
 %%
 

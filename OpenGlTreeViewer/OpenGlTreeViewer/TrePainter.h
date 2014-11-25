@@ -6,26 +6,16 @@ C++ stuff
 #include <algorithm>
 #include <cmath>
 #include <vector>
-
-
 /*
 C stuff
 */
 #include<string.h>
-
-
 /*
 OpenGL and Glut Stuff
 */
 
-#include "GL/freeglut.h"
-
-
-
 #define PI 3.141592654
-
 #define DIR_MAG 1
-
 
 using namespace std;
 
@@ -72,8 +62,7 @@ class Tree
 public:
 	Tree(char *inst);
 	Tree();
-	~Tree();
-	void draw();
+	~Tree();	
 	void add_branch();
 	void init_variables();
 	void vizualize_opengl();
@@ -84,8 +73,8 @@ public:
 	vector<branch> get_branches();
 private:
 	stack<branch> back;
-	char inst[2000];
-	float angle = 45;
+	char inst[7000];
+	float angle = 45;//float angle = ####;
 	vector<branch> structure;
 	
 	//This vector gives me the previous point
@@ -98,14 +87,16 @@ private:
 	//this vector will help me with the translation
 	float trans[4];
 
-	float magnitude = 0.04;
+	float magnitude = 0.05;
 
 	float direction[4];
 
+	branch last;
 
 	void xrotation(int sign);
 	void yrotation(int sign);
 	void zrotation(int sign);
+	void copy_last();
 	void translate();
 	
 };
@@ -155,14 +146,11 @@ void Tree::init_variables(){
 	writer[3] = start;
 }
 
-
-
-
 Tree::Tree(char *inst)
 {
-
 	set_structur(inst);
 	init_variables();
+	//#SAVE_INITIAL_STRUCTURE#
 }
 
 void Tree::set_structur(char *insts){
@@ -177,6 +165,7 @@ void Tree::set_structur(char *insts){
 
 Tree::Tree(){
 	init_variables();
+	//#SAVE_INITIAL_STRUCTURE#
 }
 
 Tree::~Tree()
@@ -198,39 +187,46 @@ void Tree::create(){
 			color[0] = 0;
 			color[1] = 255;
 			color[2] = 0;
+			this->copy_last();
 		}
 		else if (aux =='-' ){
 			this->xrotation(-1);			
 			color[0] = 0;
 			color[1] = 255;
 			color[2] = 0;
+			this->copy_last();
 		}
 		else if (aux == '&'){
 			this->yrotation(1);
 			color[0] = 255;
 			color[1] = 0;
 			color[2] = 0;
+			this->copy_last();
 		}
 		else if (aux == '$'){
 			this->yrotation(-1);
 			color[0] = 255;
 			color[1] = 0;
 			color[2] = 0;
+			this->copy_last();
 		}
 		else if (aux == ':'){
 			this->zrotation(1);
 			color[0] = 0;
 			color[1] = 0;
 			color[2] = 255;
+			this->copy_last();
 		}
 		else if (aux == '|'){			
 			this->zrotation(-1);
 			color[0] = 0;
 			color[1] = 0;
 			color[2] = 255;
+			this->copy_last();
 		}
 		else if (aux == '['){
-			this->back.push(this->structure.back());
+			this->back.push(this->last);
+			//this->back.push(this->structure.back());
 		}
 		else if (aux == ']'){
 			branch aux = this->back.top();
@@ -255,8 +251,9 @@ void Tree::create(){
 
 		}
 		
-		else if ((aux >= 'a' && aux <= 'z') || (aux >= 'A' && aux <= 'Z')){
+		else if ((aux >= 'a' && aux <= 'z') || (aux >= 'A' && aux <= 'Z')){			
 			this->translate();
+			this->copy_last();
 			this->add_branch();
 		}
 
@@ -265,21 +262,16 @@ void Tree::create(){
 	}
 }
 
-void Tree::draw(){
-	
-	vector<branch>::iterator i = this->structure.begin();
-	glBegin(GL_LINES);
-	glLineWidth(5.0f);
-	for (; i != this->structure.end(); i++){
 
-		glColor3ub(color[0], color[1], color[2]);		
-		glVertex3d((*i).begin[0], (*i).begin[1], (*i).begin[2]);
-		glVertex3d((*i).end[0], (*i).end[1], (*i).end[2]);		
-		
-	}
-	glEnd();
-	
+
+void Tree::copy_last(){
+	this->last.copy_begin(previous);
+	this->last.copy_end(writer);
+	this->last.trans[0] = this->trans[0];
+	this->last.trans[1] = this->trans[1];
+	this->last.trans[2] = this->trans[2];
 }
+
 
 void Tree::add_branch(){
 	branch bra;
@@ -298,19 +290,8 @@ void Tree::add_branch(){
 void Tree::translate(){
 
 for (int i = 0; i < 3; i++){
-
 	this->writer[i] = this->writer[i] + trans[i];
-}
-/*
-if (this->first_branch){
-	this->direction[0] = 0;
-	this->direction[1] = 0;
-	this->direction[2] = 0;
-	this->direction[3] = 0;
-	this->first_branch = 0;
-}
-	*/
-	
+}	
 	
 }
 
