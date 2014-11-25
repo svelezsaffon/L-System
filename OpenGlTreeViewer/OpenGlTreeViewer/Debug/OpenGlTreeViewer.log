@@ -1,4 +1,4 @@
-﻿Build started 24/11/2014 23:10:19.
+﻿Build started 25/11/2014 13:50:48.
      1>Project "C:\Users\Santiago\Documents\Purdue University\53500-InteractiveGraphics\final_project\L-SystemParser\OpenGlTreeViewer\OpenGlTreeViewer\OpenGlTreeViewer.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Santiago\Documents\Purdue University\53500-InteractiveGraphics\final_project\L-SystemParser\OpenGlTreeViewer\OpenGlTreeViewer" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -8,7 +8,11 @@
      1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\branch.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\branch.h(56): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\awesome.h(46): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\smalltree.h(46): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\awesome.h(69): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\smalltree.h(47): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\smalltree.h(176): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\smalltree.h(177): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\smalltree.h(178): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\gl\glui.h(868): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
      1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\main.cpp(21): warning C4305: 'initializing' : truncation from 'double' to 'float'
      1>c:\users\santiago\documents\purdue university\53500-interactivegraphics\final_project\l-systemparser\opengltreeviewer\opengltreeviewer\main.cpp(30): warning C4305: 'initializing' : truncation from 'double' to 'float'
@@ -20,4 +24,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.97
+Time Elapsed 00:00:02.12

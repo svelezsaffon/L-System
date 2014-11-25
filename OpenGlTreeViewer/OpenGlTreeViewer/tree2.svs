@@ -1,9 +1,9 @@
-#define angle=90;
-#define iter=5;
+#define angle=60;
+#define iter=1;
 #define name=smalltree;
 #define class=SmallTree;
 #define variables=F;
 #define move=F;
 axiom=F;
-F=F+F-F-F+F;
+F=F[F+F]F;
 render();

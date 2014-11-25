@@ -3,7 +3,7 @@
 using namespace std;
 
 #define PI 3.141592654
-#define DIR_MAG 1
+#define DIR_MAG 0.04
 
 class branch
 {

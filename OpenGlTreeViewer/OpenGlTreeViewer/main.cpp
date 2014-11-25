@@ -35,8 +35,8 @@ void initializeGL();
 void callbacksGL();
 void create_ui();
 
-MySuperTree tree;
-SmallTree coch;
+SmallTree tree;
+
 
 int main(int argc, char** argv){
 
@@ -44,7 +44,7 @@ int main(int argc, char** argv){
 	
 	
 	tree.create();
-	coch.create();
+	
 
 	initializeGL();
 	callbacksGL();
@@ -83,6 +83,7 @@ void display()
 
 		glColor3ub(255, 0, 0);
 		glVertex3d((*i).begin[0], (*i).begin[1], (*i).begin[2]);
+		cout << (*i).begin[0] << " " << (*i).begin[1] << " " << (*i).begin[2] << "->" << (*i).end[0] << " " << (*i).end[1] << " " << (*i).end[2] << endl;
 		glVertex3d((*i).end[0], (*i).end[1], (*i).end[2]);
 
 	}

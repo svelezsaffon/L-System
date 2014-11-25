@@ -1,6 +1,7 @@
-﻿#define angle=90;
-#define iter=4;
-#define name=firsttree;
+#define angle=90;
+#define iter=3;
+#define name=smalltree;
+#define class=SmallTree;
 #define variables=F;
 #define move=F;
 axiom=F;
