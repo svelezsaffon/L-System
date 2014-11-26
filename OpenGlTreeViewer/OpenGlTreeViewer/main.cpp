@@ -83,7 +83,7 @@ void display()
 
 		glColor3ub(255, 0, 0);
 		glVertex3d((*i).begin[0], (*i).begin[1], (*i).begin[2]);
-		cout << (*i).begin[0] << " " << (*i).begin[1] << " " << (*i).begin[2] << "->" << (*i).end[0] << " " << (*i).end[1] << " " << (*i).end[2] << endl;
+		//cout << (*i).begin[0] << " " << (*i).begin[1] << " " << (*i).begin[2] << "->" << (*i).end[0] << " " << (*i).end[1] << " " << (*i).end[2] << endl;
 		glVertex3d((*i).end[0], (*i).end[1], (*i).end[2]);
 
 	}

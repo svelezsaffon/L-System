@@ -149,11 +149,14 @@ void CLASSNAME::create(){
 			this->copy_last();
 		}
 		else if (aux == '['){
-			this->back.push(this->last);
+			branch aux(this->last.begin, this->last.end, this->last.trans);
+			this->back.push(aux);
 			//this->back.push(this->structure.back());
 		}
 		else if (aux == ']'){
 			branch aux = this->back.top();
+			this->last.copy_all(aux.begin, aux.end, aux.trans);
+			this->back.pop();
 			this->writer[0] = aux.end[0];
 			this->writer[1] = aux.end[1];
 			this->writer[2] = aux.end[2];
@@ -163,10 +166,14 @@ void CLASSNAME::create(){
 			this->previous[1] = aux.end[1];
 			this->previous[2] = aux.end[2];
 			
-
-			this->direction[0] = (aux.end[0]!=0)? 1:0;
-			this->direction[1] = (aux.end[1] != 0) ? 1 : 0;
-			this->direction[2] = (aux.end[2] != 0) ? 1 : 0;
+			
+			this->direction[0] = (aux.trans[0] != 0) ? 1 : 0;
+			this->direction[1] = (aux.trans[1] != 0) ? 1 : 0;
+			this->direction[2] = (aux.trans[2] != 0) ? 1 : 0;
+			
+			this->trans[0] = 0;
+			this->trans[1] = 0;
+			this->trans[2] = 0;
 			
 
 		}

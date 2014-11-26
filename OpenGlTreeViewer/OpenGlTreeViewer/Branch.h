@@ -10,15 +10,32 @@ class branch
 public:
 	branch();
 	~branch();
+	branch(float *begin,float *end,float *trans);
 	float begin[3];
 	float end[3];
 	float trans[3];
 
 	void copy_begin(float *);
 	void copy_end(float *);
+	void copy_all(float *begin, float *end, float *trans);
 private:
 
 };
+
+void branch::copy_all(float *begin, float *end, float *trans){
+	this->copy_begin(begin);
+	this->copy_end(end);
+	this->trans[0] = trans[0];
+	this->trans[1] = trans[1];
+	this->trans[2] = trans[2];
+}
+branch::branch(float *begin, float *end, float *trans){
+	this->copy_begin(begin);
+	this->copy_end(end);
+	this->trans[0] = trans[0];
+	this->trans[1] = trans[1];
+	this->trans[2] = trans[2];
+}
 
 branch::branch()
 {

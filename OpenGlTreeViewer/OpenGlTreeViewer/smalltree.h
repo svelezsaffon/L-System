@@ -30,8 +30,8 @@ public:
 	vector<branch> get_branches();
 private:
 	stack<branch> back;
-	char inst[11];
-	float angle = 60.000000;
+	char inst[104];
+	float angle = 45.000000;
 	vector<branch> structure;
 	
 	//This vector gives me the previous point
@@ -94,7 +94,7 @@ void SmallTree::set_structur(char *insts){
 
 SmallTree::SmallTree(){
 	init_variables();
-strcpy_s(inst,11,"F[F+F]F");
+strcpy_s(inst,104,"F[+F[:F][|F]][-F][:F[+F][-F]][|F]F[+F[:F][|F]][-F][:F][|F]F[+F[:F][|F]][-F][:F][|F]F[+F][-F][:F][|F]");
 }
 
 SmallTree::~SmallTree()
@@ -149,20 +149,14 @@ void SmallTree::create(){
 			this->copy_last();
 		}
 		else if (aux == '['){
-			
-			branch aux;
-			aux.copy_begin(this->last.begin);
-			aux.copy_end(this->last.end);
-			aux.trans[0] = this->direction[0];
-			aux.trans[1] = this->direction[1];
-			aux.trans[2] = this->direction[2];
-
+			branch aux(this->last.begin, this->last.end, this->last.trans);
 			this->back.push(aux);
-
 			//this->back.push(this->structure.back());
 		}
 		else if (aux == ']'){
 			branch aux = this->back.top();
+			this->last.copy_all(aux.begin, aux.end, aux.trans);
+			this->back.pop();
 			this->writer[0] = aux.end[0];
 			this->writer[1] = aux.end[1];
 			this->writer[2] = aux.end[2];
@@ -172,17 +166,21 @@ void SmallTree::create(){
 			this->previous[1] = aux.end[1];
 			this->previous[2] = aux.end[2];
 			
-
-			this->direction[0] = (aux.trans[0]!=0)? 1:0;
+			
+			this->direction[0] = (aux.trans[0] != 0) ? 1 : 0;
 			this->direction[1] = (aux.trans[1] != 0) ? 1 : 0;
 			this->direction[2] = (aux.trans[2] != 0) ? 1 : 0;
+			
+			this->trans[0] = 0;
+			this->trans[1] = 0;
+			this->trans[2] = 0;
 			
 
 		}
 		
-		else if ((aux >= 'a' && aux <= 'z') || (aux >= 'A' && aux <= 'Z')){			
+		else if ((aux >= 'a' && aux <= 'z') || (aux >= 'A' && aux <= 'Z')){
 			this->update_translate();			
-			this->translate();			
+			this->translate();
 			this->copy_last();
 			this->add_branch();
 		}
@@ -195,9 +193,9 @@ void SmallTree::create(){
 void SmallTree::copy_last(){
 	this->last.copy_begin(previous);
 	this->last.copy_end(writer);
-	this->last.trans[0] = this->direction[0];
-	this->last.trans[1] = this->direction[1];
-	this->last.trans[2] = this->direction[2];
+	this->last.trans[0] = this->trans[0];
+	this->last.trans[1] = this->trans[1];
+	this->last.trans[2] = this->trans[2];
 }
 
 
