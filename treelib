@@ -26,6 +26,7 @@ public:
 	void create();
 	int sign(float value);
 	void update_direction(float *point,float angle);
+	void update_translate();
 	vector<branch> get_branches();
 private:
 	stack<branch> back;
@@ -48,6 +49,8 @@ private:
 	float direction[4];
 
 	branch last;
+	
+	#DECREASE#
 
 	void xrotation(int sign);
 	void yrotation(int sign);
@@ -66,7 +69,7 @@ void CLASSNAME::init_variables(){
 	previous[3] = start;
 
 	direction[0] = start ;
-	direction[1] = start + DIR_MAG;
+	direction[1] = 1 ;
 	direction[2] = start ;
 	direction[3] = start;
 
@@ -104,6 +107,19 @@ vector<branch> CLASSNAME::get_branches(){
 	return this->structure;
 }
 
+void SmallTree::update_translate(){
+	if (direction[0] != 0){
+		this->trans[0] = magnitude * this->sign(direction[0]);
+	}
+	if (direction[1] != 0){
+		this->trans[1] = magnitude * this->sign(direction[1]);
+	}
+	if (direction[2] != 0){
+		this->trans[2] = magnitude *this->sign(direction[2]);
+	}
+}
+
+
 void CLASSNAME::create(){	
 	unsigned int pos = 0;
 	while (pos < strlen(this->inst)){	
@@ -135,33 +151,37 @@ void CLASSNAME::create(){
 			this->copy_last();
 		}
 		else if (aux == '['){
-			this->back.push(this->last);
+			branch aux(this->last.begin, this->last.end, this->last.trans);
+			this->back.push(aux);
 			//this->back.push(this->structure.back());
 		}
 		else if (aux == ']'){
 			branch aux = this->back.top();
+			this->last.copy_all(aux.begin, aux.end, aux.trans);
+			this->back.pop();
 			this->writer[0] = aux.end[0];
 			this->writer[1] = aux.end[1];
 			this->writer[2] = aux.end[2];
 			
 
-			this->previous[0] = aux.begin[0];
-			this->previous[1] = aux.begin[1];
-			this->previous[2] = aux.begin[2];
+			this->previous[0] = aux.end[0];
+			this->previous[1] = aux.end[1];
+			this->previous[2] = aux.end[2];
 			
-
-			this->direction[0] = aux.end[0];
-			this->direction[1] = aux.end[1];
-			this->direction[2] = aux.end[2];
-
-			this->trans[0] = aux.trans[0];
-			this->trans[1] = aux.trans[1];
-			this->trans[2] = aux.trans[2];
+			
+			this->direction[0] = (aux.trans[0] != 0) ? 1 : 0;
+			this->direction[1] = (aux.trans[1] != 0) ? 1 : 0;
+			this->direction[2] = (aux.trans[2] != 0) ? 1 : 0;
+			
+			this->trans[0] = 0;
+			this->trans[1] = 0;
+			this->trans[2] = 0;
 			
 
 		}
 		
-		else if ((aux >= 'a' && aux <= 'z') || (aux >= 'A' && aux <= 'Z')){			
+		else if ((aux >= 'a' && aux <= 'z') || (aux >= 'A' && aux <= 'Z')){
+			this->update_translate();			
 			this->translate();
 			this->copy_last();
 			this->add_branch();
@@ -196,7 +216,11 @@ void CLASSNAME::add_branch(){
 
 
 void CLASSNAME::translate(){
-
+	if (direction[0] == 0 && direction[2] == 0 && direction[1] != 0){
+		if (writer[0] == 0 && writer[2] == 0 && writer[1] != 0){
+			magnitude = magnitude *0.9;
+		}
+	}
 for (int i = 0; i < 3; i++){
 	this->writer[i] = this->writer[i] + trans[i];
 }	
@@ -317,13 +341,4 @@ void CLASSNAME::update_direction(float *newpoint,float angle){
 	this->direction[2] = newpoint[2];
 	this->direction[3] = newpoint[3];
 
-	if (newpoint[0] != 0){
-		this->trans[0] = magnitude * this->sign(newpoint[0]);
-	}
-	if (newpoint[1] != 0){
-		this->trans[1] = magnitude * this->sign(newpoint[1]);
-	}
-	if (newpoint[2] != 0){
-		this->trans[2] = magnitude *this->sign(newpoint[2]);
-	}
 }

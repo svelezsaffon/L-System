@@ -60,7 +60,8 @@
      NAME = 276,
      VARIABLES = 277,
      MOVE = 278,
-     CLASSNAME = 279
+     CLASSNAME = 279,
+     LENGTH = 280
    };
 #endif
 /* Tokens.  */
@@ -86,6 +87,7 @@
 #define VARIABLES 277
 #define MOVE 278
 #define CLASSNAME 279
+#define LENGTH 280
 
 
 

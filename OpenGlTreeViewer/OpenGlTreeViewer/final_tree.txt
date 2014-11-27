@@ -1,0 +1,14 @@
+#define angle=45;
+#define iter=2;
+#define name=smalltree;
+#define class=SmallTree;
+#define variables=FXBHM;
+#define move=FXBH;
+axiom=X;
+F=F[+F][-F]F;
+H=H[:H][|H]H;
+X=B[F]B[H]B[F]B[H]B[F]B;
+B=B;
+
+
+render();

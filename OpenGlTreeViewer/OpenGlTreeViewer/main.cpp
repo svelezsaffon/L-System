@@ -74,7 +74,7 @@ void display()
 
 	gluLookAt(camera[0], camera[1], camera[2], 0, 0, 0, 0, 1, 0);
 	glBegin(GL_LINES);
-	glLineWidth(5.0f);
+	glLineWidth(20.0f);
 
 	vector<branch> tre_stru = tree.get_branches();
 	vector<branch>::iterator i = tre_stru.begin();
@@ -82,8 +82,7 @@ void display()
 	for (; i != tre_stru.end(); i++){
 
 		glColor3ub(255, 0, 0);
-		glVertex3d((*i).begin[0], (*i).begin[1], (*i).begin[2]);
-		//cout << (*i).begin[0] << " " << (*i).begin[1] << " " << (*i).begin[2] << "->" << (*i).end[0] << " " << (*i).end[1] << " " << (*i).end[2] << endl;
+		glVertex3d((*i).begin[0], (*i).begin[1], (*i).begin[2]);		
 		glVertex3d((*i).end[0], (*i).end[1], (*i).end[2]);
 
 	}

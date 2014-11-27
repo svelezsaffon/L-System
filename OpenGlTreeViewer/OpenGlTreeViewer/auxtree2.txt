@@ -1,0 +1,9 @@
+#define angle=45;
+#define iter=1;
+#define name=smalltree;
+#define class=SmallTree;
+#define variables=F;
+#define move=F;
+axiom=F;
+F=F[+F[:F][|F]][-F][:F[+F][-F]][|F]F[+F[:F][|F]][-F][:F][|F]F[+F[:F][|F]][-F][:F][|F]F[+F][-F][:F][|F];
+render();

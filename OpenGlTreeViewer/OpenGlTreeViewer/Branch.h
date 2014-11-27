@@ -14,6 +14,7 @@ public:
 	float begin[3];
 	float end[3];
 	float trans[3];
+	float decrease;
 
 	void copy_begin(float *);
 	void copy_end(float *);

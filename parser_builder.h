@@ -37,7 +37,12 @@ extern "C" {
     char *result_equa;
     int clas_name_set = 0;
     unsigned int num_equations = 0;
-
+    float length=1.0;
+    
+    void set_length(float len){
+        length=len;
+    }
+    
     void add_operator(char oper) {
         sprintf(array_equa, "%s%c", array_equa, oper);
     }
@@ -222,6 +227,8 @@ extern "C" {
                 fprintf(fout, "	char inst[%d];\n", strlen(equa) + 4);
             } else if (strstr(line, "#SAVE_INITIAL_STRUCTURE#") != 0) {
                 fprintf(fout, "strcpy_s(inst,%d,\"%s\");\n", strlen(equa) + 4, equa);
+            }else if(strstr(line, "#DECREASE#") != 0){
+                fprintf(fout, "float decrese=%lf;\n",length/100);
             }else if (strstr(line, "CLASSNAME") != 0) {
 
                 char * pch;

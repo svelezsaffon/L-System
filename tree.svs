@@ -1,11 +1,11 @@
 #define angle=45;
 #define iter=1;
-#define name=awesome;
-#define variables=ABC;
-#define move=AB;
-#define class=MySuperTree;
-axiom=A;
-A=A$A[+B+B]A&[-B-B]A$[:B:B]A&[|B|B]A$[+B+B]A&[-B-B]A$[+B+B]AA;
-B=B;
-C=C;
+#define length=96;
+#define name=smalltree;
+#define class=SmallTree;
+#define variables=FX;
+#define move=F;
+axiom=F;
+F=F[+F[:F]];
 render();
+

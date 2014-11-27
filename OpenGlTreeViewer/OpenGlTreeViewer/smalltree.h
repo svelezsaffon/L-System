@@ -30,7 +30,7 @@ public:
 	vector<branch> get_branches();
 private:
 	stack<branch> back;
-	char inst[104];
+	char inst[201];
 	float angle = 45.000000;
 	vector<branch> structure;
 	
@@ -49,6 +49,8 @@ private:
 	float direction[4];
 
 	branch last;
+	
+float decrese=0.800000;
 
 	void xrotation(int sign);
 	void yrotation(int sign);
@@ -94,7 +96,7 @@ void SmallTree::set_structur(char *insts){
 
 SmallTree::SmallTree(){
 	init_variables();
-strcpy_s(inst,104,"F[+F[:F][|F]][-F][:F[+F][-F]][|F]F[+F[:F][|F]][-F][:F][|F]F[+F[:F][|F]][-F][:F][|F]F[+F][-F][:F][|F]");
+strcpy_s(inst,201,"T[[+F+F][-F-F][:B:B][|B|B]B]T[[+F+F][-F-F][:B:B][|B|B]B]T[[+F+F][-F-F][:B:B][|B|B]B]T[[+F+F][-F-F][:B:B][|B|B]B]T[[+F+F][-F-F][:B:B][|B|B]B]T[[+F+F][-F-F][:B:B][|B|B]B]T[[+F+F][-F-F][:B:B][|B|B]B]T");
 }
 
 SmallTree::~SmallTree()
@@ -150,8 +152,9 @@ void SmallTree::create(){
 		}
 		else if (aux == '['){
 			branch aux(this->last.begin, this->last.end, this->last.trans);
+			aux.decrease = magnitude;
 			this->back.push(aux);
-			//this->back.push(this->structure.back());
+		
 		}
 		else if (aux == ']'){
 			branch aux = this->back.top();
@@ -174,7 +177,7 @@ void SmallTree::create(){
 			this->trans[0] = 0;
 			this->trans[1] = 0;
 			this->trans[2] = 0;
-			
+			magnitude = aux.decrease;			
 
 		}
 		
@@ -214,7 +217,11 @@ void SmallTree::add_branch(){
 
 
 void SmallTree::translate(){
-
+	if (direction[0] == 0 && direction[2] == 0 && direction[1] != 0){
+		if (writer[0] == 0 && writer[2] == 0 && writer[1] != 0){
+			magnitude = magnitude *decrese;
+		}
+	}
 for (int i = 0; i < 3; i++){
 	this->writer[i] = this->writer[i] + trans[i];
 }	

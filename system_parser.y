@@ -31,6 +31,7 @@ int isaxiom=1;
 %token VARIABLES
 %token MOVE
 %token CLASSNAME
+%token LENGTH
 
 %%
 
@@ -80,6 +81,7 @@ define  :
         |DEFINE VARIABLES EQUAL word SEMICOL {variables();};
         |DEFINE MOVE EQUAL word SEMICOL {constants();};
         |DEFINE CLASSNAME EQUAL word SEMICOL {class_name();};
+        |DEFINE LENGTH EQUAL NUMBER SEMICOL  {set_length($4);}
 %%
 
 main(argc, argv)

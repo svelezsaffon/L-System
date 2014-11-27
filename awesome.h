@@ -6,59 +6,19 @@ C++ stuff
 #include <cmath>
 #include <vector>
 #include <string.h>
+#include "Branch.h"
 /*
 C stuff
 */
 #include<string.h>
 
-#define PI 3.141592654
-#define DIR_MAG 1
-
 using namespace std;
 
-int cont = 0;
-int color[3] = {255,0,0};
-
-class branch
-{
-public:
-	branch();
-	~branch();
-	float begin[3];
-	float end[3];
-	float trans[3];
-	
-	void copy_begin(float *);
-	void copy_end(float *);
-private:
-
-};
-
-branch::branch()
-{
-}
-
-branch::~branch()
-{
-}
-
-void branch::copy_begin(float *point){
-	this->begin[0] = point[0];
-	this->begin[1] = point[1];
-	this->begin[2] = point[2];
-}
-
-void branch::copy_end(float *point){
-	this->end[0] = point[0];
-	this->end[1] = point[1];
-	this->end[2] = point[2];
-}
-
-class MySuperTree
+float decrese=1.000000;
 {
 public:	
-	MySuperTree();
-	~MySuperTree();	
+float decrese=1.000000;
+float decrese=1.000000;
 	void add_branch();
 	void init_variables();
 	void vizualize_opengl();
@@ -66,6 +26,7 @@ public:
 	void create();
 	int sign(float value);
 	void update_direction(float *point,float angle);
+	void update_translate();
 	vector<branch> get_branches();
 private:
 	stack<branch> back;
@@ -97,29 +58,8 @@ private:
 	
 };
 
-float cos_svs(float angle){
-	angle = angle*PI / 180.0; // To radians
-	float value = cos(angle);
-	if (abs(value) < 0.0000001){
-		value = 0.0;
-	}
 
-	return value;
-}
-
-
-float sin_svs(float angle){
-	angle = angle*PI / 180.0; // To radians
-	float value = sin(angle);
-	if (abs(value) < 0.0000001){
-		value = 0.0;
-	}
-
-	return value;
-}
-
-
-void MySuperTree::init_variables(){
+float decrese=1.000000;
 	float start = 0.0;
 	previous[0] = start;
 	previous[1] = start;
@@ -127,7 +67,7 @@ void MySuperTree::init_variables(){
 	previous[3] = start;
 
 	direction[0] = start ;
-	direction[1] = start + DIR_MAG;
+	direction[1] = 1 ;
 	direction[2] = start ;
 	direction[3] = start;
 
@@ -142,7 +82,7 @@ void MySuperTree::init_variables(){
 	writer[3] = start;
 }
 
-void MySuperTree::set_structur(char *insts){
+float decrese=1.000000;
 	int len = strlen(insts);
 	
 	for(int i = 0; i < len; i++){
@@ -152,20 +92,33 @@ void MySuperTree::set_structur(char *insts){
 	inst[len] = '\0';
 }
 
-MySuperTree::MySuperTree(){
+float decrese=1.000000;
 	init_variables();
 strcpy_s(inst,63,"A$A[+B+B]A&[-B-B]A$[:B:B]A&[|B|B]A$[+B+B]A&[-B-B]A$[+B+B]AA");
 }
 
-MySuperTree::~MySuperTree()
+float decrese=1.000000;
 {
 }
 
-vector<branch> MySuperTree::get_branches(){
+float decrese=1.000000;
 	return this->structure;
 }
 
-void MySuperTree::create(){	
+void SmallTree::update_translate(){
+	if (direction[0] != 0){
+		this->trans[0] = magnitude * this->sign(direction[0]);
+	}
+	if (direction[1] != 0){
+		this->trans[1] = magnitude * this->sign(direction[1]);
+	}
+	if (direction[2] != 0){
+		this->trans[2] = magnitude *this->sign(direction[2]);
+	}
+}
+
+
+float decrese=1.000000;
 	unsigned int pos = 0;
 	while (pos < strlen(this->inst)){	
 
@@ -173,74 +126,60 @@ void MySuperTree::create(){
 
 		if (aux == '+'){
 			this->xrotation(1);
-			color[0] = 0;
-			color[1] = 255;
-			color[2] = 0;
 			this->copy_last();
 		}
 		else if (aux =='-' ){
 			this->xrotation(-1);			
-			color[0] = 0;
-			color[1] = 255;
-			color[2] = 0;
 			this->copy_last();
 		}
 		else if (aux == '&'){
 			this->yrotation(1);
-			color[0] = 255;
-			color[1] = 0;
-			color[2] = 0;
 			this->copy_last();
 		}
 		else if (aux == '$'){
 			this->yrotation(-1);
-			color[0] = 255;
-			color[1] = 0;
-			color[2] = 0;
 			this->copy_last();
 		}
 		else if (aux == ':'){
-			this->zrotation(1);
-			color[0] = 0;
-			color[1] = 0;
-			color[2] = 255;
+			this->zrotation(1);			
 			this->copy_last();
 		}
 		else if (aux == '|'){			
 			this->zrotation(-1);
-			color[0] = 0;
-			color[1] = 0;
-			color[2] = 255;
 			this->copy_last();
 		}
 		else if (aux == '['){
-			this->back.push(this->last);
+			branch aux(this->last.begin, this->last.end, this->last.trans);
+			this->back.push(aux);
 			//this->back.push(this->structure.back());
 		}
 		else if (aux == ']'){
 			branch aux = this->back.top();
+			this->last.copy_all(aux.begin, aux.end, aux.trans);
+			this->back.pop();
 			this->writer[0] = aux.end[0];
 			this->writer[1] = aux.end[1];
 			this->writer[2] = aux.end[2];
 			
 
-			this->previous[0] = aux.begin[0];
-			this->previous[1] = aux.begin[1];
-			this->previous[2] = aux.begin[2];
+			this->previous[0] = aux.end[0];
+			this->previous[1] = aux.end[1];
+			this->previous[2] = aux.end[2];
 			
-
-			this->direction[0] = aux.end[0];
-			this->direction[1] = aux.end[1];
-			this->direction[2] = aux.end[2];
-
-			this->trans[0] = aux.trans[0];
-			this->trans[1] = aux.trans[1];
-			this->trans[2] = aux.trans[2];
+			
+			this->direction[0] = (aux.trans[0] != 0) ? 1 : 0;
+			this->direction[1] = (aux.trans[1] != 0) ? 1 : 0;
+			this->direction[2] = (aux.trans[2] != 0) ? 1 : 0;
+			
+			this->trans[0] = 0;
+			this->trans[1] = 0;
+			this->trans[2] = 0;
 			
 
 		}
 		
-		else if ((aux >= 'a' && aux <= 'z') || (aux >= 'A' && aux <= 'Z')){			
+		else if ((aux >= 'a' && aux <= 'z') || (aux >= 'A' && aux <= 'Z')){
+			this->update_translate();			
 			this->translate();
 			this->copy_last();
 			this->add_branch();
@@ -251,7 +190,7 @@ void MySuperTree::create(){
 	}
 }
 
-void MySuperTree::copy_last(){
+float decrese=1.000000;
 	this->last.copy_begin(previous);
 	this->last.copy_end(writer);
 	this->last.trans[0] = this->trans[0];
@@ -260,7 +199,7 @@ void MySuperTree::copy_last(){
 }
 
 
-void MySuperTree::add_branch(){
+float decrese=1.000000;
 	branch bra;
 	bra.copy_begin(previous);
 	bra.copy_end(writer);
@@ -274,15 +213,19 @@ void MySuperTree::add_branch(){
 }
 
 
-void MySuperTree::translate(){
-
+float decrese=1.000000;
+	if (direction[0] == 0 && direction[2] == 0 && direction[1] != 0){
+		if (writer[0] == 0 && writer[2] == 0 && writer[1] != 0){
+			magnitude = magnitude *0.9;
+		}
+	}
 for (int i = 0; i < 3; i++){
 	this->writer[i] = this->writer[i] + trans[i];
 }	
 	
 }
 
-int MySuperTree::sign(float value){
+float decrese=1.000000;
 	if (value >= 0)
 		return 1;
 	else
@@ -290,7 +233,7 @@ int MySuperTree::sign(float value){
 }
 
 
-void MySuperTree::xrotation(int sign){
+float decrese=1.000000;
 	float auxangle = this->angle*sign;
 	float rotmat[4][4];
 	float newpoint[4] = {0.0,0.0,0.0,0.0};
@@ -323,7 +266,7 @@ void MySuperTree::xrotation(int sign){
 
 }
 
-void MySuperTree::zrotation(int sign){
+float decrese=1.000000;
 	float auxangle = this->angle*sign;
 	float rotmat[4][4];
 	float newpoint[4] = { 0.0, 0.0, 0.0, 0.0 };
@@ -354,7 +297,7 @@ void MySuperTree::zrotation(int sign){
 
 
 
-void MySuperTree::yrotation(int sign){
+float decrese=1.000000;
 	float auxangle = this->angle*sign;
 	float rotmat[4][4];
 	float newpoint[4] = { 0.0, 0.0, 0.0, 0.0 };
@@ -385,7 +328,7 @@ void MySuperTree::yrotation(int sign){
 	this->update_direction(newpoint,auxangle);
 }
 
-void MySuperTree::update_direction(float *newpoint,float angle){
+float decrese=1.000000;
 	this->trans[0] = 0;
 	this->trans[1] = 0;
 	this->trans[2] = 0;
@@ -396,13 +339,4 @@ void MySuperTree::update_direction(float *newpoint,float angle){
 	this->direction[2] = newpoint[2];
 	this->direction[3] = newpoint[3];
 
-	if (newpoint[0] != 0){
-		this->trans[0] = magnitude * this->sign(newpoint[0]);
-	}
-	if (newpoint[1] != 0){
-		this->trans[1] = magnitude * this->sign(newpoint[1]);
-	}
-	if (newpoint[2] != 0){
-		this->trans[2] = magnitude *this->sign(newpoint[2]);
-	}
 }
