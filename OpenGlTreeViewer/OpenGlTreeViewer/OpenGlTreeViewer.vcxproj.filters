@@ -24,16 +24,13 @@
     <ClInclude Include="TrePainter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Branch.h">
+    <ClInclude Include="Helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Branch.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

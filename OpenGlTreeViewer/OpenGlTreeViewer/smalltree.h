@@ -6,7 +6,7 @@ C++ stuff
 #include <cmath>
 #include <vector>
 #include <string.h>
-#include "Branch.h"
+#include "Helper.h"
 /*
 C stuff
 */
@@ -44,7 +44,7 @@ private:
 	//this vector will help me with the translation
 	float trans[4];
 
-	float magnitude = 0.05;
+	float magnitude = 1;
 
 	float direction[4];
 

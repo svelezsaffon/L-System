@@ -70,12 +70,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Branch.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="TreeLoaderFunctions.h" />
     <ClInclude Include="TrePainter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Branch.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

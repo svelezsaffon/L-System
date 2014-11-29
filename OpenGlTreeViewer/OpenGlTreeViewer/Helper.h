@@ -1,5 +1,5 @@
 #pragma once
-
+#include <sstream>
 using namespace std;
 
 #define PI 3.141592654
@@ -78,4 +78,43 @@ float sin_svs(float angle){
 	}
 
 	return value;
+}
+class ObjExporter
+{
+public:
+	
+	std::string filename;
+
+	void set_file_name(std::string filename);
+	void export_tree(std::vector<branch>);
+
+
+};
+
+void ObjExporter::set_file_name(std::string file){
+	this->filename = file;
+}
+
+
+void ObjExporter::export_tree(std::vector<branch> tree){
+	std::vector<branch>::iterator bra = tree.begin();
+
+	std::ofstream obj;
+	obj.open(this->filename);
+
+	std::stringstream ss;
+
+	obj << "#Vertex Info " << std::endl;
+	for (int i = 1; bra != tree.end(); bra++){
+		obj << "v " << (*bra).begin[0] << " " << (*bra).begin[1] << " " << (*bra).begin[2] << " " << std::endl;
+		obj << "v " << (*bra).end[0] << " " << (*bra).end[1] << " " << (*bra).end[2] << " " << std::endl;
+		ss << "l " << (i) << " " << (i+1) << endl;
+		i += 2;
+	}
+	obj << "#Lines Info " << std::endl;
+	obj << ss.str();
+
+
+	obj.close();
+
 }

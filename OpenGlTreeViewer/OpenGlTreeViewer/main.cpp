@@ -8,6 +8,7 @@
 
 
 
+
 #ifdef _WIN32
 #include<Windows.h>
 #endif
@@ -38,6 +39,11 @@ void create_ui();
 SmallTree tree;
 
 
+
+
+
+
+
 int main(int argc, char** argv){
 
 	glutInit(&argc, argv);
@@ -45,6 +51,12 @@ int main(int argc, char** argv){
 	
 	tree.create();
 	
+	ObjExporter ex;
+
+	ex.set_file_name("cristmastree.obj");
+	ex.export_tree(tree.get_branches());
+
+
 
 	initializeGL();
 	callbacksGL();
