@@ -169,10 +169,9 @@ void CLASSNAME::create(){
 			this->previous[1] = aux.end[1];
 			this->previous[2] = aux.end[2];
 			
-			
-			this->direction[0] = (aux.trans[0] != 0) ? 1 : 0;
-			this->direction[1] = (aux.trans[1] != 0) ? 1 : 0;
-			this->direction[2] = (aux.trans[2] != 0) ? 1 : 0;
+			this->direction[0] = (aux.trans[0] != 0) ? 1*sign(direction[0]) : 0;
+			this->direction[1] = (aux.trans[1] != 0) ? 1 * sign(direction[1]) : 0;
+			this->direction[2] = (aux.trans[2] != 0) ? 1 * sign(direction[2]) : 0;
 			
 			this->trans[0] = 0;
 			this->trans[1] = 0;
