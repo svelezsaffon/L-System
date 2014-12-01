@@ -53,7 +53,7 @@ int main(int argc, char** argv){
 	
 	ObjExporter ex;
 
-	ex.set_file_name("PineTree.obj");
+	ex.set_file_name("HugePineTree.obj");
 	ex.export_tree(tree.get_branches());
 
 
