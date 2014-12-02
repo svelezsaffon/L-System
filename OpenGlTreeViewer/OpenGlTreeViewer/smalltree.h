@@ -30,7 +30,7 @@ public:
 	vector<branch> get_branches();
 private:
 	stack<branch> back;
-	char inst[146];
+	char inst[1151];
 	float angle = 45.000000;
 	vector<branch> structure;
 	
@@ -44,7 +44,7 @@ private:
 	//this vector will help me with the translation
 	float trans[4];
 
-	float magnitude = 0.05;
+	float magnitude = 2;
 
 	float direction[4];
 
@@ -96,7 +96,7 @@ void SmallTree::set_structur(char *insts){
 
 SmallTree::SmallTree(){
 	init_variables();
-strcpy_s(inst,146,"T[[+T+T+T][-T-T-T]][[:T:T:T][|T|T[[+T+M][-T-0]][[:T:0][|T|0]]]]T[[+T+T+T][-T-T-T]][[:T:T:T][|T|T[F][B]]]T[[+T+M][-T-0]][[:T:0][|T|0]]T[F][B]00");
+strcpy_s(inst,1151,"TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[0]][-T-[0]][:T:[0]][|T|[0]]]TT[FB]0");
 }
 
 SmallTree::~SmallTree()

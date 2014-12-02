@@ -37,7 +37,7 @@ extern "C" {
     char *result_equa;
     int clas_name_set = 0;
     unsigned int num_equations = 0;
-    float length=1.0;
+    float length=100.0;
     
     void set_length(float len){
         length=len;
