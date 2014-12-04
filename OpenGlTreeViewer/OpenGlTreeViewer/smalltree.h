@@ -30,7 +30,7 @@ public:
 	vector<branch> get_branches();
 private:
 	stack<branch> back;
-	char inst[1151];
+	char inst[1709];
 	float angle = 45.000000;
 	vector<branch> structure;
 	
@@ -50,7 +50,7 @@ private:
 
 	branch last;
 	
-float decrese=0.800000;
+float decrese=0.900000;
 
 	void xrotation(int sign);
 	void yrotation(int sign);
@@ -96,7 +96,7 @@ void SmallTree::set_structur(char *insts){
 
 SmallTree::SmallTree(){
 	init_variables();
-strcpy_s(inst,1151,"TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[+T+T]][-T-[-T-T]][:T:[:T:T]][|T|[|T|T]]]TT[[+T+[0]][-T-[0]][:T:[0]][|T|[0]]]TT[FB]0");
+strcpy_s(inst,1709,"TTTTT[-TT[-TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][+TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][:TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][|TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]]][+TT[-TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][+TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][:TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][|TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]]][:TT[-TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][+TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][:TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][|TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]]][|TT[-TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][+TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][:TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]][|TT[-TT[-T0][+T0][:T0][|T0]][+TT[-T0][+T0][:T0][|T0]][:TT[-T0][+T0][:T0][|T0]][|TT[-T0][+T0][:T0][|T0]]]]");
 }
 
 SmallTree::~SmallTree()
@@ -216,11 +216,8 @@ void SmallTree::add_branch(){
 
 
 void SmallTree::translate(){
-	if (direction[0] == 0 && direction[2] == 0 && direction[1] != 0){
-		if (writer[0] == 0 && writer[2] == 0 && writer[1] != 0){
-			magnitude = magnitude *decrese;
-		}
-	}
+
+	magnitude = magnitude *decrese;
 for (int i = 0; i < 3; i++){
 	this->writer[i] = this->writer[i] + trans[i];
 }	

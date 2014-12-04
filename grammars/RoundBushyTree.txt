@@ -1,0 +1,11 @@
+#define angle=45;
+#define iter=4;
+#define length=90;
+#define name=smalltree;
+#define class=SmallTree;
+#define variables=FXBTMR;
+#define move=T;
+axiom=TTTTX;
+T=T;
+X=T[-TX][+TX][:TX][|TX];
+render();

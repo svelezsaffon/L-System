@@ -216,11 +216,8 @@ void CLASSNAME::add_branch(){
 
 
 void CLASSNAME::translate(){
-	if (direction[0] == 0 && direction[2] == 0 && direction[1] != 0){
-		if (writer[0] == 0 && writer[2] == 0 && writer[1] != 0){
-			magnitude = magnitude *decrese;
-		}
-	}
+
+	magnitude = magnitude *decrese;
 for (int i = 0; i < 3; i++){
 	this->writer[i] = this->writer[i] + trans[i];
 }	
