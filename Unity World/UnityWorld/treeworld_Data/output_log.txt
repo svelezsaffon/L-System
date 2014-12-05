@@ -12,7 +12,7 @@ Platform assembly: C:\Users\Santiago\Documents\Purdue University\53500-Interacti
 Loading C:\Users\Santiago\Documents\Purdue University\53500-InteractiveGraphics\final_project\L-SystemParser\Unity World\UnityWorld\treeworld_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\Santiago\Documents\Purdue University\53500-InteractiveGraphics\final_project\L-SystemParser\Unity World\UnityWorld\treeworld_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
 Loading C:\Users\Santiago\Documents\Purdue University\53500-InteractiveGraphics\final_project\L-SystemParser\Unity World\UnityWorld\treeworld_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-- Completed reload, in  0.067 seconds
+- Completed reload, in  0.070 seconds
 desktop: 1366x768 60Hz; virtual: 2966x900 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
